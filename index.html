@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>김준서 생일 축하해!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pink:#FF5FA0;
+    --yellow:#FFD23F;
+    --sky:#4FC3FF;
+    --mint:#3FE0A5;
+    --purple:#8A5CFF;
+    --red:#FF5A5A;
+    --cream:#FFF6EC;
+    --ink:#3A2B52;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+
+  body{
+    min-height:100vh;
+    background:
+      radial-gradient(circle at 15% 20%, #FFE2B0 0%, transparent 48%),
+      radial-gradient(circle at 88% 12%, #B9F5E0 0%, transparent 42%),
+      radial-gradient(circle at 82% 88%, #FFCBEB 0%, transparent 48%),
+      radial-gradient(circle at 8% 85%, #C9DBFF 0%, transparent 45%),
+      linear-gradient(135deg, #FFF8ED, #FFF0FA, #EEF6FF, #FFF8ED);
+    background-size:140% 140%, 140% 140%, 140% 140%, 140% 140%, 300% 300%;
+    animation:driftbg 18s ease-in-out infinite;
+    font-family:'Gaegu', sans-serif;
+    color:var(--ink);
+    overflow-x:hidden;
+    position:relative;
+  }
+  @keyframes driftbg{
+    0%,100%{background-position:0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 50%;}
+    50%{background-position:8% 12%, 90% 10%, 92% 90%, 6% 92%, 100% 50%;}
+  }
+
+  /* ---------- sparkles ---------- */
+  .sparkle{
+    position:fixed;
+    font-size:1.2rem;
+    z-index:1;
+    animation:twinkle ease-in-out infinite;
+    pointer-events:none;
+  }
+  @keyframes twinkle{
+    0%,100%{opacity:0.15; transform:scale(0.7) rotate(0deg);}
+    50%{opacity:1; transform:scale(1.15) rotate(20deg);}
+  }
+
+  /* ---------- floating balloons ---------- */
+  .balloon{
+    position:fixed;
+    bottom:-160px;
+    width:64px;
+    height:78px;
+    border-radius:50% 50% 50% 50% / 58% 58% 42% 42%;
+    animation:rise linear infinite;
+    opacity:0.9;
+    z-index:1;
+  }
+  .balloon::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:-46px;
+    transform:translateX(-50%);
+    width:2px;
+    height:46px;
+    background:rgba(58,43,82,0.35);
+  }
+  .balloon::before{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:-2px;
+    transform:translateX(-50%);
+    width:0;
+    height:0;
+    border-left:6px solid transparent;
+    border-right:6px solid transparent;
+    border-top:9px solid inherit;
+  }
+  @keyframes rise{
+    0%{transform:translateY(0) rotate(-4deg);}
+    50%{transform:translateY(-58vh) rotate(4deg);}
+    100%{transform:translateY(-118vh) rotate(-4deg);}
+  }
+
+  /* ---------- confetti ---------- */
+  .confetti{
+    position:fixed;
+    top:-24px;
+    width:10px;
+    height:16px;
+    opacity:0.95;
+    animation:fall linear infinite;
+    z-index:1;
+  }
+  @keyframes fall{
+    0%{transform:translateY(0) rotate(0deg);}
+    100%{transform:translateY(112vh) rotate(540deg);}
+  }
+
+  /* ---------- layout ---------- */
+  main{
+    position:relative;
+    z-index:2;
+    max-width:640px;
+    margin:0 auto;
+    padding:64px 24px 96px;
+    text-align:center;
+  }
+
+  .eyebrow-cake{
+    font-size:58px;
+    line-height:1;
+    display:inline-block;
+    animation:wiggle 2.4s ease-in-out infinite;
+    transform-origin:bottom center;
+  }
+  @keyframes wiggle{
+    0%,100%{transform:rotate(-6deg);}
+    50%{transform:rotate(6deg);}
+  }
+
+  .headline{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:800;
+    font-size:clamp(2.4rem, 8vw, 4.2rem);
+    line-height:1.15;
+    margin:18px 0 6px;
+    color:var(--ink);
+    text-shadow:0 0 46px rgba(255,111,165,0.35);
+  }
+  .headline .name{
+    display:inline-block;
+    background:linear-gradient(100deg, var(--pink), var(--purple) 55%, var(--sky));
+    background-size:200% auto;
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    animation:shine 5s linear infinite;
+  }
+  @keyframes shine{
+    0%{background-position:0% center;}
+    100%{background-position:200% center;}
+  }
+
+  .subline{
+    font-family:'Gaegu', sans-serif;
+    font-size:1.5rem;
+    color:var(--ink);
+    opacity:0.85;
+    margin:0 0 40px;
+  }
+
+  .age-card{
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    gap:18px;
+    background:#fff;
+    border:3px solid var(--ink);
+    border-radius:28px;
+    padding:22px 38px;
+    box-shadow:8px 8px 0 var(--purple), 0 0 0 3px #fff, 0 0 32px rgba(138,92,255,0.35);
+    margin-bottom:44px;
+  }
+  .age-card::before{
+    content:"";
+    position:absolute;
+    inset:-9px;
+    z-index:-1;
+    border-radius:34px;
+    background:conic-gradient(from 0deg, var(--pink), var(--yellow), var(--mint), var(--sky), var(--purple), var(--pink));
+    opacity:0.55;
+    filter:blur(6px);
+    animation:spin 6s linear infinite;
+  }
+  @keyframes spin{
+    to{transform:rotate(360deg);}
+  }
+  .age-number{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:800;
+    font-size:5.5rem;
+    line-height:1;
+    color:var(--pink);
+  }
+  .age-label{
+    text-align:left;
+    font-size:1.3rem;
+    line-height:1.35;
+  }
+  .age-label strong{
+    display:block;
+    font-family:'Baloo 2', sans-serif;
+    font-size:1.05rem;
+    color:var(--purple);
+  }
+
+  .message{
+    background:#fff;
+    border-radius:24px;
+    padding:32px 28px;
+    box-shadow:0 10px 0 rgba(58,43,82,0.08);
+    border:2px dashed var(--sky);
+    font-size:1.4rem;
+    line-height:1.7;
+    margin-bottom:36px;
+  }
+  .message .signoff{
+    display:block;
+    margin-top:14px;
+    font-family:'Baloo 2', sans-serif;
+    font-size:1rem;
+    color:var(--purple);
+  }
+
+  /* ---------- interest tags ---------- */
+  .tags-title{
+    font-family:'Baloo 2', sans-serif;
+    font-size:1.1rem;
+    color:var(--ink);
+    opacity:0.7;
+    margin:0 0 16px;
+  }
+  .tag-row{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:14px;
+    margin-bottom:8px;
+  }
+  .tag-btn{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:1.05rem;
+    color:#fff;
+    border:none;
+    border-radius:999px;
+    padding:14px 26px;
+    cursor:pointer;
+    box-shadow:0 6px 0 rgba(0,0,0,0.15);
+    transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .tag-btn:active{
+    transform:translateY(4px);
+    box-shadow:0 2px 0 rgba(0,0,0,0.15);
+  }
+  .tag-btn:hover{
+    transform:translateY(-2px);
+  }
+  .tag-btn.singer{background:linear-gradient(135deg, var(--pink), #FF9BCB);}
+  .tag-btn.valorant{background:linear-gradient(135deg, var(--red), #FF8A5B);}
+  .tag-btn.school{background:linear-gradient(135deg, var(--sky), var(--purple));}
+
+  .reveal-stage{
+    min-height:24px;
+    margin:8px 0 40px;
+  }
+
+  .floating-emoji{
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:5;
+    pointer-events:none;
+    filter:drop-shadow(0 8px 12px rgba(58,43,82,0.25));
+    animation:emoji-in 0.45s cubic-bezier(.34,1.56,.64,1) forwards, emoji-out 0.6s ease-in forwards;
+  }
+  @keyframes emoji-in{
+    0%{transform:translate(-50%,-50%) scale(0) rotate(-25deg); opacity:0;}
+    70%{transform:translate(-50%,-50%) scale(1.2) rotate(10deg); opacity:1;}
+    100%{transform:translate(-50%,-50%) scale(1) rotate(0deg); opacity:1;}
+  }
+  @keyframes emoji-out{
+    0%,75%{opacity:1;}
+    100%{opacity:0; transform:translate(-50%,-70%) scale(0.85) rotate(-6deg);}
+  }
+  .tag-btn.junseo{background:linear-gradient(135deg, var(--yellow), var(--pink));}
+
+  .sticker-row{
+    display:flex;
+    justify-content:center;
+    gap:22px;
+    font-size:2.4rem;
+    margin-top:8px;
+  }
+  .sticker-row span{
+    display:inline-block;
+    animation:pop 1.8s ease-in-out infinite;
+  }
+  .sticker-row span:nth-child(2){animation-delay:0.2s;}
+  .sticker-row span:nth-child(3){animation-delay:0.4s;}
+  .sticker-row span:nth-child(4){animation-delay:0.6s;}
+  @keyframes pop{
+    0%,100%{transform:translateY(0) scale(1);}
+    50%{transform:translateY(-10px) scale(1.15);}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .balloon, .confetti, .eyebrow-cake, .sticker-row span, .sparkle, body, .headline .name, .age-card::before, .reveal-emoji{
+      animation:none !important;
+    }
+  }
+
+  @media (max-width:480px){
+    .age-card{gap:12px; padding:18px 22px;}
+    .age-number{font-size:4rem;}
+    .tag-btn{padding:12px 18px; font-size:0.95rem;}
+  }
+</style>
+</head>
+<body>
+
+<main>
+  <div class="eyebrow-cake">🎂</div>
+  <h1 class="headline">생일 축하해<br><span class="name">준서</span>야!</h1>
+  <p class="subline">오늘은 너를 위한 날이야</p>
+
+  <div class="age-card">
+    <div class="age-number">18</div>
+    <div class="age-label"><strong>Happy 18th</strong>드디어 성인이 코앞!<br>고2, 진짜 고생 많았어</div>
+  </div>
+
+  <div class="message">
+    올 한 해도 씩씩하게 잘 버텨줘서 고마워.<br>
+    앞으로 펼쳐질 열여덟 이야기들도 준서답게, 재밌게 채워나가길.<br>
+    오늘 하루는 그냥 마음껏 즐겨도 돼 🎉
+    <span class="signoff">— HJM</span>
+  </div>
+
+  <p class="tags-title">준서를 소개하자면</p>
+  <div class="tag-row">
+    <button class="tag-btn singer" data-emoji="🎤" data-label="가수 준서">#가수</button>
+    <button class="tag-btn valorant" data-emoji="🔫" data-label="발로란트 에이스">#발로란트</button>
+    <button class="tag-btn school" data-emoji="🏫" data-label="선정고 화이팅">#선정고등학교</button>
+    <button class="tag-btn junseo" data-emoji="🤪" data-label="바보 김준서">#김준서</button>
+  </div>
+  <div class="reveal-stage" id="revealStage"></div>
+
+  <div class="sticker-row">
+    <span>🎈</span><span>🎁</span><span>✨</span><span>🍰</span>
+  </div>
+</main>
+
+<script>
+  const balloonColors = ['#FF6FA5','#FFD23F','#5AC8FA','#4ADE9E','#7C5CFF'];
+  const confettiColors = ['#FF6FA5','#FFD23F','#5AC8FA','#4ADE9E','#7C5CFF'];
+  const body = document.body;
+
+  function rand(min, max){ return Math.random() * (max - min) + min; }
+
+  for(let i=0;i<9;i++){
+    const b = document.createElement('div');
+    b.className = 'balloon';
+    const color = balloonColors[i % balloonColors.length];
+    b.style.background = color;
+    b.style.borderTopColor = color;
+    b.style.left = rand(2, 92) + 'vw';
+    b.style.animationDuration = rand(9, 16) + 's';
+    b.style.animationDelay = rand(0, 10) + 's';
+    body.appendChild(b);
+  }
+
+  for(let i=0;i<40;i++){
+    const c = document.createElement('div');
+    c.className = 'confetti';
+    c.style.background = confettiColors[i % confettiColors.length];
+    c.style.left = rand(0, 100) + 'vw';
+    c.style.animationDuration = rand(4, 9) + 's';
+    c.style.animationDelay = rand(0, 8) + 's';
+    c.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    body.appendChild(c);
+  }
+
+  const sparkleGlyphs = ['✨','⭐','💫'];
+  for(let i=0;i<16;i++){
+    const s = document.createElement('div');
+    s.className = 'sparkle';
+    s.textContent = sparkleGlyphs[i % sparkleGlyphs.length];
+    s.style.left = rand(0, 100) + 'vw';
+    s.style.top = rand(0, 100) + 'vh';
+    s.style.animationDuration = rand(2, 4.5) + 's';
+    s.style.animationDelay = rand(0, 3) + 's';
+    body.appendChild(s);
+  }
+
+  const clickCounts = new Map();
+
+  function spawnEmojiBurst(emoji, count){
+    for(let i=0;i<count;i++){
+      const el = document.createElement('div');
+      el.className = 'floating-emoji';
+      el.textContent = emoji;
+      const size = rand(1.8, 3.6);
+      el.style.fontSize = size + 'rem';
+      el.style.left = rand(6, 94) + 'vw';
+      el.style.top = rand(10, 88) + 'vh';
+      el.style.animationDelay = rand(0, count * 0.05) + 's, ' + (2.2 + rand(0, count * 0.05)) + 's';
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 3200 + count * 60);
+    }
+  }
+
+  document.querySelectorAll('.tag-btn').forEach(btn => {
+    clickCounts.set(btn, 0);
+    btn.addEventListener('click', () => {
+      const next = clickCounts.get(btn) + 1;
+      clickCounts.set(btn, next);
+      const count = Math.min(next * 3, 40);
+      spawnEmojiBurst(btn.dataset.emoji, count);
+    });
+  });
+</script>
+
+</body>
+</html>
